@@ -1,98 +1,141 @@
 <?php
 
-echo "Questão unica: Qual animal é?\n";
+echo "=== Qual animal é? ===\n";
 
-// faz uma logica depois copia e edita (tava certo)
-
-//Variaveis:
-
-// //Main
-// $ehMamifero = (bool) false;
-// $ehAves = (bool) false;
-// $ehRepteis = (bool) false;
-
-// //Sub (Mamifero)
-// $ehQuadrupede = (bool) false;
-// $ehBipede = (bool) false;
-// $ehVoador = (bool) false;
-// $ehAquatico = (bool) false;
-
-// //Sub Sub (Mamifero)
-// $ehHerbivero = (bool) false;
-// $ehOnivoro = (bool) false;
-// $ehFrutivoro = (bool) false;
-
-
-// //Sub (Aves)
-// $ehNaoVoador = (bool) false;
-// $ehNadador = (bool) false;
-// $ehRapina = (bool) false;
-
-// //Sub Sub (Aves)
-// $ehTropical = (bool) false;
-// $ehPolar = (bool) false;
-
-
-// //Sub (Réteis)
-// $ehDuro = (bool) false;
-// $ehCarnivoro = (bool) false;
-// $eh = (bool) false;
-
-$animal = (string) "Nenhum selecionado"; // Animais: "Leão", "Cavalo", "Homem", "Morcego", "Baleia", "Avestruz", "Pinguim", "Pato", "Águia", "Tartaruga", "Crocodilo", "Cobra";
-
-//Codigo de perguntas:
-$input1 = (string) readline("É mamifero? (sim/nao): "); //Mamifero?
-
-if ($input1 === "sim"){ 
-    //$ehMamifero = true; 
-    $input = (string) readline("É Quadrúpede? (sim/nao): ");//Quadrupede?
-    if ($input === "sim"){ 
-        //$ehQuadrupede = true;
-
-        $input = (string) readline("É Carnívoro? (sim/nao): ");// Canivoro?
-        if($input === "sim"){ 
-            //$ehCarnivoro = true;   
-            $animal = "Leão";
-
-        }else{
-            $input = (string) readline("É herbivoro? (sim/não): ");//Herbivero
-
-            if($input === "sim"){ 
-                //$ehHerbivero = true;
-                $animal = "Cavalo";
-            }elseif($input === "nao"){
-                echo "Animal não existe";
-            }
+$resposta = (string) readline("É Mamíforo? (sim ou nao): "); //1
+//Primeiro if
+if ($resposta === "sim"){
+    $resposta = (string) readline("É Quadrupede? (sim ou nao): "); //1:1
+    
+    if($resposta === "sim"){
+        $resposta = (string) readline("É Carnivoro? (sim ou nao): "); //1:1:1
+        if($resposta === "sim"){
+            echo "O animal é um Leão.\n"; //Fim Leao
         }
-
-    }else if($input === "nao"){ 
-        $input = (string) readline("É Bípede? (sim/não): ");//Bípede?
-        if($input === "sim"){
-            //$ehBipede = true;
-
-            $input = (string) readline("É Onivoro? (sim/não): ");//Onivoro?
-            if($input === "sim"){
-                $animal = "Humano";
-            }elseif($input === "nao"){
-                $input = (string) readline("É Frutívoro? (sim/não): ");//Frutivoro?
-                if($input === "sim"){
-                    $animal = "Macaco";
-                }elseif($input === "nao"){
-                    echo "animal não existe";
-                }
-            }        
-        }elseif ($input === "nao"){
-            $input = (string) readline("É Voador? (sim/não): "); //Voador
-            if($input === "sim"){
-                $animal = "Morcego";
+        elseif($resposta === "nao"){
+            $resposta = (string) readline("É Herbívoro? (sim ou nao): "); //1:1:2
+            if($resposta === "sim"){
+                echo "O animal é um Cavalo.\n";//Fim Cavalo
+            }else{ //caso erro Herbivoro
+                echo "Tente novamente.\n";
             }
-            
+        }else{ //caso erro Carnivoro
+            echo "Tente novamente.\n";
+        }
+    
+    }elseif($resposta === "nao"){
+        $resposta = (string) readline("É Bipede? (sim ou nao): "); //1:2
+        if($resposta === "sim"){ 
+            $resposta = (string) readline("É Onivoro? (sim ou nao): "); //1:2:1
+            if($resposta === "sim"){
+                echo "O animal é um Humano.\n"; //fim Humano
+            }
+            elseif($resposta === "nao"){
+                $resposta = (string) readline("É Frutivoro? (sim ou nao): "); //1:2:2
+                if($resposta === "sim"){
+                    echo "O animal é um Macaco.\n"; //fim Macaco
+                }else{ //caso erro Frutivoro
+                    echo "Tente novamente.\n";
+                }
+            }else{ //caso erro Onivoro
+                echo "Tente novamente.\n";
+            }
+        }elseif($resposta === "nao"){
+            $resposta = (string) readline("É Voador? (sim ou nao): "); //1:3
+            if($resposta === "sim"){
+                echo "O animal é Morcego.\n"; //fim Morcego
+
+            }elseif($resposta === "nao"){
+                $resposta = (string) readline("É Aquatico? (sim ou nao): "); //1:4
+                if($resposta === "sim"){
+                    echo "O animal é Baleia.\n"; //fim Baleia
+                }else{ //caso erro Aquatico
+                    echo "Tente novamente.\n";
+                }
+            }else{ //caso erro Voador
+                echo "Tente novamente.\n";
+            }
+
+        }else{ //caso erro Bipede
+            echo "Tente novamente.\n";
         }
     }
-}elseif ($input1 === "nao"){ //Não Mamifero
-    echo "sem outra logica disponivel\n";
+    //caso erro Quadrupede
+    else{
+        echo "Tente novamente.\n";
+    }
 }
+// Primeiro elseif
+elseif($resposta === "nao"){ //2:1
+    $resposta = (string) readline("É ave? (sim ou nao): "); //2
+    if($resposta === "sim"){
+        $resposta = (string) readline("É não voador? (sim ou nao): "); //2:1
+        if($resposta === "sim"){
+            $resposta = (string) readline("É Tropical? (sim ou nao): "); //2:1:1
+            if($resposta === "sim"){
+                echo "O animal é Avestruz.\n"; //fim Avestruz
 
-echo "Animal escolhido é: $animal\n";
+            }elseif($resposta === "nao"){
+                $resposta = (string) readline("É Polar? (sim ou nao): "); //2:1:2
+                if($resposta === "sim"){
+                    echo "O animal É Pinguim.\n"; //fim Pinguim
+                }else{ //caso erro Polar
+                    echo "Tente novamente.\n";
+                }
+            }else{ //caso erro Tropical
+                echo "Tente novamente.\n";
+            }
+        }elseif($resposta === "nao"){
 
+            $resposta = (string) readline("É Nadador? (sim ou nao): "); //2:2
+            if($resposta === "sim"){
+                echo "O animal é Pato.\n"; //fim Pato
+            }elseif($resposta === "nao"){
+                $resposta = (string) readline("É De Rapina? (sim ou nao): "); //2:3
+                if($resposta === "sim"){
+                    echo "O animal é Águia.\n"; //fim Águia
+                }else{ //caso erro De Rapina
+                    echo "Tente novamente.\n";
+                }
+            }else{
+                echo "Tente novamente.\n"; //caso erro Nadador
+            }
+
+        }else{ //caso erro Não Voador
+            echo "Tente novamente.\n";
+        }
+    }
+    elseif($resposta === "nao"){
+        $resposta = (string) readline("É Reptil? (sim ou nao): "); //3
+        if($resposta === "sim"){
+            $resposta = (string) readline("É Com Casco? (sim ou nao): "); //3:1
+            if($resposta === "sim"){
+                echo "O animal é Tartaruga.\n"; //fim Tartaruga
+
+            }elseif($resposta === "nao"){
+                $resposta = (string) readline("É Carnivoro? (sim ou nao): "); //3:2
+                if($resposta === "sim"){
+                    echo "O animal é Crocodilo.\n"; //fim Crocodilo
+                }elseif($resposta === "nao"){
+                    $resposta = (string) readline("É Sem Patas? (sim ou nao): "); //3:3
+                    if($resposta === "sim"){
+                        echo "O animal é Cobra.\n"; //fim Cobra
+                    }else{ //caso erro Sem Patas
+                        echo "Tente novamente.\n";
+                    }
+                }else{ //caso erro Carnivoro (Reptil)
+                    echo "Tente novamente.\n";
+                }
+            }else{ //caso erro Com Casco
+                echo "Tente novamente.\n";
+            }
+        }else{ //caso erro Reptil
+            echo "Tente novamente.\n";
+        }
+    }else{ //caso erro Ave
+        echo "tente novamente.\n";
+    }
+}else{ //caso erro Mamifero
+    echo "Tente novamente.\n";
+}
 ?>
